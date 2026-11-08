@@ -1,0 +1,26 @@
+{
+  "name": "Volai - Send SMS with stable idempotency key",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "to": "={{ $json.phone }}",
+        "body": "={{ $json.text }}",
+        "idempotencyKey": "={{ $json.eventId }}"
+      },
+      "type": "n8n-nodes-volai.volai",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ],
+      "name": "Send SMS"
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

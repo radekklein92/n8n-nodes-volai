@@ -1,0 +1,56 @@
+{
+  "name": "n8n-nodes-volai",
+  "version": "0.1.0",
+  "description": "Send SMS, place calls, and react to Volai telephony events in n8n.",
+  "license": "MIT",
+  "homepage": "https://volai.cz/integrace/n8n",
+  "keywords": [
+    "n8n-community-node-package",
+    "volai",
+    "sms",
+    "voice",
+    "telephony"
+  ],
+  "author": {
+    "name": "Volai",
+    "email": "podpora@volai.cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/radekklein92/n8n-nodes-volai.git"
+  },
+  "scripts": {
+    "build": "n8n-node build",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "prepublishOnly": "n8n-node prerelease"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/VolaiApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Volai/Volai.node.js",
+      "dist/nodes/VolaiTrigger/VolaiTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "^0.55.5",
+    "@types/node": "^22.15.30",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/radekklein92/n8n-nodes-volai/issues"
+  }
+}
