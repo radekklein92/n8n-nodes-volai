@@ -4,17 +4,21 @@ Community nodes for [Volai](https://volai.cz): send SMS, place and inspect calls
 
 ## Installation
 
-This package is being prepared for publication and is not yet available from npm. Until the public release, build it from this source directory and install the resulting package archive in a self-hosted n8n instance:
+The prebuilt `v0.1.1` package is available from the [GitHub release](https://github.com/radekklein92/n8n-nodes-volai/releases/tag/v0.1.1) as `n8n-nodes-volai-0.1.1.tgz`. Its SHA-256 checksum is `d25f85422f49a8e85600e3aa852f8aae088b7c5936d86507e7367b25d025abab`.
+
+For self-hosted n8n, download the archive and make it available inside the n8n host or container. You can verify it with `shasum -a 256 n8n-nodes-volai-0.1.1.tgz`. Then install it in the n8n runtime and restart n8n:
 
 ```sh
-npm ci
-npm run build
-npm pack
+mkdir -p ~/.n8n/nodes
+cd ~/.n8n/nodes
+npm install /path/to/n8n-nodes-volai-0.1.1.tgz
 ```
 
-Then install the generated `.tgz` using your self-hosted n8n community-node procedure. The generated archive includes the compiled Volai node, trigger, credential, and icons. After npm publication, self-hosted users can install `n8n-nodes-volai` from **Settings → Community nodes → Install**. n8n Cloud availability requires separate approval through the n8n Creator Portal; publication on npm does not imply verification.
+For Docker, run these commands in the n8n container and use the path where you copied the archive. Make sure the custom-node directory persists when the container is recreated. In queue mode, install the package wherever n8n loads workflow nodes. See the [official n8n manual installation guide](https://docs.n8n.io/integrations/community-nodes/installation-and-management/manual-installation/).
 
-The public source repository is [radekklein92/n8n-nodes-volai](https://github.com/radekklein92/n8n-nodes-volai). Releases use the `publish.yml` GitHub Actions workflow with npm provenance. Run it on a matching version tag (for example `v0.1.0`). Its default `stage` mode uploads a candidate using a stage-only `NPM_TOKEN`; an npm maintainer then approves it with 2FA. After configuring an npm Trusted Publisher for this repository and workflow, `publish` mode can publish directly. Never commit registry credentials.
+The GitHub archive is a self-hosted installation route while npm publication is pending. After npm publication, self-hosted users can install `n8n-nodes-volai` from **Settings → Community nodes → Install**. n8n Cloud availability requires separate approval through the n8n Creator Portal; publication on npm does not imply verification.
+
+The public source repository is [radekklein92/n8n-nodes-volai](https://github.com/radekklein92/n8n-nodes-volai). Releases use the `publish.yml` GitHub Actions workflow with npm provenance. Run it on a matching version tag (for example `v0.1.1`). Its default `stage` mode uploads a candidate using a stage-only `NPM_TOKEN`; an npm maintainer then approves it with 2FA. After configuring an npm Trusted Publisher for this repository and workflow, `publish` mode can publish directly. Never commit registry credentials.
 
 ## Credentials
 
