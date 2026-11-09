@@ -49,7 +49,7 @@ export class VolaiTrigger implements INodeType {
     displayName: 'Volai Trigger', name: 'volaiTrigger', icon: { light: 'file:volai.svg', dark: 'file:volai.svg' }, group: ['trigger'], version: 1,
     description: 'Start a workflow when a Volai call or message event occurs', subtitle: 'On Volai event', defaults: { name: 'Volai Trigger' },
     inputs: [], outputs: [NodeConnectionTypes.Main], credentials: [{ name: 'volaiApi', required: true }],
-    webhooks: [{ name: 'default', httpMethod: 'POST', responseMode: 'onReceived', path: 'events', restartWebhook: true }],
+    webhooks: [{ name: 'default', httpMethod: 'POST', responseMode: 'onReceived', path: 'events' }],
     properties: [{
       displayName: 'Events', name: 'events', type: 'multiOptions', required: true, default: ['call.completed', 'message.received'],
       options: EVENTS.map((event) => ({ name: event, value: event })),
