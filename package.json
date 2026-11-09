@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-volai",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Send SMS, place calls, and react to Volai telephony events in n8n.",
   "license": "MIT",
   "homepage": "https://volai.cz/integrace/n8n",
