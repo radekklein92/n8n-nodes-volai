@@ -26,7 +26,7 @@ npm install /path/to/n8n-nodes-volai-0.1.1.tgz
 
 For Docker, run these commands in the n8n container and use the path where you copied the archive. Make sure the custom-node directory persists when the container is recreated. In queue mode, install the package wherever n8n loads workflow nodes. See the [official n8n manual installation guide](https://docs.n8n.io/integrations/community-nodes/installation-and-management/manual-installation/).
 
-Verification through the n8n Creator Portal has been requested and automated checks passed. Manual review requires a demo video and is not complete. The package is not yet verified or available on n8n Cloud.
+Verification through the n8n Creator Portal has been requested and automated checks passed. The demo video for version 0.1.1 was submitted on 12 November 2026, and the portal now shows manual review as **Under review**. n8n states that this review typically takes up to four weeks. The package is not yet verified or available on n8n Cloud.
 
 The public source repository is [radekklein92/n8n-nodes-volai](https://github.com/radekklein92/n8n-nodes-volai). Future releases use the `publish.yml` GitHub Actions workflow with npm provenance. Its default `stage` mode uploads a candidate using a stage-only `NPM_TOKEN`; an npm maintainer then approves it with 2FA. After configuring an npm Trusted Publisher for this repository and workflow, `publish` mode can publish directly. Never commit registry credentials.
 
