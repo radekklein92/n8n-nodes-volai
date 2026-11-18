@@ -6,11 +6,11 @@ Community nodes for [Volai](https://volai.cz): send SMS, place and inspect calls
 
 ### Install from the n8n UI
 
-In self-hosted n8n, open **Settings → Community nodes → Install**, enter `n8n-nodes-volai`, and confirm the installation. The current release is [n8n-nodes-volai 0.1.1 on npm](https://www.npmjs.com/package/n8n-nodes-volai/v/0.1.1). It was published with GitHub Actions provenance.
+In self-hosted n8n, open **Settings → Community nodes → Install**, enter `n8n-nodes-volai`, and confirm the installation. Published releases are available on [npm](https://www.npmjs.com/package/n8n-nodes-volai) with GitHub Actions provenance.
 
 ### Install from the GitHub archive
 
-Use the [v0.1.1 GitHub release](https://github.com/radekklein92/n8n-nodes-volai/releases/tag/v0.1.1) as an alternative when you install community nodes manually. Download `n8n-nodes-volai-0.1.1.tgz` and verify its SHA-256 checksum:
+The earlier [v0.1.1 GitHub release](https://github.com/radekklein92/n8n-nodes-volai/releases/tag/v0.1.1) remains available as an alternative when you install community nodes manually. Download `n8n-nodes-volai-0.1.1.tgz` and verify its SHA-256 checksum:
 
 ```sh
 shasum -a 256 n8n-nodes-volai-0.1.1.tgz
@@ -26,7 +26,7 @@ npm install /path/to/n8n-nodes-volai-0.1.1.tgz
 
 For Docker, run these commands in the n8n container and use the path where you copied the archive. Make sure the custom-node directory persists when the container is recreated. In queue mode, install the package wherever n8n loads workflow nodes. See the [official n8n manual installation guide](https://docs.n8n.io/integrations/community-nodes/installation-and-management/manual-installation/).
 
-Verification through the n8n Creator Portal has been requested and automated checks passed. The demo video for version 0.1.1 was submitted on 12 November 2026, and the portal now shows manual review as **Under review**. n8n states that this review typically takes up to four weeks. The package is not yet verified or available on n8n Cloud.
+Verification through the n8n Creator Portal has been requested and automated checks passed. The demo video for version 0.1.1 was submitted on 12 November 2026. Manual review requested an English translation of a trigger code comment, which is included in the 0.1.2 patch. The package is not yet approved as a verified community node, and n8n Cloud availability is not confirmed.
 
 The public source repository is [radekklein92/n8n-nodes-volai](https://github.com/radekklein92/n8n-nodes-volai). Future releases use the `publish.yml` GitHub Actions workflow with npm provenance. Its default `stage` mode uploads a candidate using a stage-only `NPM_TOKEN`; an npm maintainer then approves it with 2FA. After configuring an npm Trusted Publisher for this repository and workflow, `publish` mode can publish directly. Never commit registry credentials.
 
@@ -58,7 +58,19 @@ The trigger does not use the legacy single-webhook endpoint. Volai retries faile
 - [SMS from an upstream event](examples/send-sms.json)
 - [Run on an incoming message](examples/incoming-message-trigger.json)
 
+For a first connection check, import one of these complete public workflows through **Import from URL**:
+
+- [Read the balance manually](https://volai.eu/examples/n8n/check-connection.json)
+- [Read a completed call result](https://volai.eu/examples/n8n/call-result.json)
+- [Read an incoming SMS](https://volai.eu/examples/n8n/incoming-message.json)
+
+All three import inactive, contain no credentials, and have no call/message sending action. Select your own **Volai API** credential in each Volai node. The balance example runs manually and only uses `GET /v1/balance`. The event examples wait for a new matching event from normal activity, then use `data.id` to read that same call or message. They do not replay historical events. Incoming SMS requires an SMS-capable number. Review data handling before adding CRM or notification steps, and deduplicate downstream writes with `event_id`.
+
+The standalone SMS example above is a paid sending action. It needs an upstream item with `phone`, `text`, and a stable `eventId`, plus a selected credential. Do not run it until the recipient and message are intentional. See the current [Czech guide](https://volai.cz/integrace/n8n) or [English guide](https://volai.eu/integrations/n8n) for setup, prerequisites, costs, and retries.
+
 ## Development
+
+All code comments, node interface text, and documentation in this distributable package must stay in English for [n8n verification](https://docs.n8n.io/integrations/creating-nodes/build/reference/verification-guidelines/#use-english-language-only).
 
 ```sh
 npm ci
