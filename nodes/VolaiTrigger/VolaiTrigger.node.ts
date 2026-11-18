@@ -133,8 +133,8 @@ export class VolaiTrigger implements INodeType {
     if (!subscription?.id || payload.subscription_id !== subscription.id || !/^[A-Za-z0-9_-]{8,200}$/.test(eventId)) {
       return respond(this, 400, 'Invalid Volai event notification.');
     }
-    // Tělo notifikace obsahuje jen odkaz. Událost ověřujeme načtením
-    // neměnného záznamu přes autentizované API Volai.
+    // The notification body contains only a reference. We verify the event by fetching
+    // the immutable record through the authenticated Volai API.
     const headers = this.getHeaderData();
     const deliveredToken = headers['x-volai-webhook-token'];
     if (typeof deliveredToken !== 'string' || !subscription.deliveryToken || deliveredToken !== subscription.deliveryToken) {
